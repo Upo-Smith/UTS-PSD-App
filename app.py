@@ -9,7 +9,7 @@ st.title("Prediksi Emosi Berdasarkan Audio Menggunakan KNN")
 
 audio = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg"])
 
-st.write("Mungkin nanti ada error, tapi itu karena belum ada audio yg dimasukkan, setelah audio dimasukkan error akan menghilang")
+st.markdown("**DISCLAIMER**: mungkin nanti ada error, tapi itu karena belum ada audio yg dimasukkan, setelah audio dimasukkan error akan menghilang")
 
 tab1, tab2, tab3 = st.tabs(["Extract", "Preprocessing", "Prediction"])
 
@@ -122,7 +122,7 @@ with tab1:
     st.dataframe(root)
 
 with tab2:
-    method = st.radio('Normalisasi hasil ektraksi inputan menggunakan Z-Score',('Dengan PCA', 'Tanpa PCA'))
+    method = st.radio('Normalisasi hasil ektraksi inputan menggunakan Z-Score',('Dengan PCA (20)', 'Tanpa PCA'))
 
     scaler = pickle.load(open('scaler.pkl', 'rb'))
     pca = pickle.load(open('pca.pkl', 'rb'))
@@ -132,18 +132,18 @@ with tab2:
 
     if method == 'Tanpa PCA':
         st.write(data_sc)
-    if method == 'Dengan PCA':
+    if method == 'Dengan PCA (20)':
         st.write(data_pca)
 
 with tab3:
     Pclf = pickle.load(open('clf.pkl', 'rb'))
     Sclf = pickle.load(open('Sclf.pkl', 'rb'))
 
-    st.write("Hasil prediksi dari audio di atas:")
+    st.write("Hasil prediksi dari audio di atas (Akurasi 81%, K = 9):")
 
     if method == 'Tanpa PCA':
         predict1 = Sclf.predict(data_sc)
         st.write(predict1)
-    if method == 'Dengan PCA':
+    if method == 'Dengan PCA (20)':
         predict2 = Pclf.predict(data_pca)
         st.write(predict2)
