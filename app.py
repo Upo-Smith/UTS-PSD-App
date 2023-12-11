@@ -122,7 +122,7 @@ with tab1:
     st.dataframe(root)
 
 with tab2:
-    method = st.write('Normalisasi hasil ektraksi inputan menggunakan Z-Score Tanpa PCA:')
+    method = st.write('Normalisasi hasil ekstraksi inputan menggunakan Z-Score Tanpa PCA:')
 
     scaler = pickle.load(open('scaler.pkl', 'rb'))
     pca = pickle.load(open('pca.pkl', 'rb'))
