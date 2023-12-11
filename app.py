@@ -9,7 +9,7 @@ st.title("Prediksi Emosi Berdasarkan Audio Menggunakan KNN")
 
 audio = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg"])
 
-st.markdown("**DISCLAIMER**: mungkin nanti ada error, tapi itu karena belum ada audio yg dimasukkan, setelah audio dimasukkan error akan menghilang")
+st.markdown("**DISCLAIMER**: mungkin nanti ada error, tapi itu list kosong karena belum ada audio yg dimasukkan, setelah audio dimasukkan error akan menghilang")
 
 tab1, tab2, tab3 = st.tabs(["Extract", "Preprocessing", "Prediction"])
 
@@ -122,21 +122,18 @@ with tab1:
     st.dataframe(root)
 
 with tab2:
-    method = st.write('Normalisasi hasil ekstraksi inputan menggunakan Z-Score Tanpa PCA:')
+    method = st.write('Normalisasi hasil ektraksi inputan menggunakan Z-Score Tanpa PCA:')
 
     scaler = pickle.load(open('scaler.pkl', 'rb'))
-    pca = pickle.load(open('pca.pkl', 'rb'))
 
     data_sc = scaler.transform(data)
-    data_pca = pca.transform(data_sc)
 
     st.write(data_sc)
 
 with tab3:
-    Pclf = pickle.load(open('clf.pkl', 'rb'))
-    Sclf = pickle.load(open('Sclf.pkl', 'rb'))
+    clf = pickle.load(open('clf.pkl', 'rb'))
 
     st.write("Hasil prediksi dari audio di atas (Akurasi 81%, K = 9):")
 
-    predict1 = Sclf.predict(data_sc)
+    predict1 = clf.predict(data_sc)
     st.write(predict1)
