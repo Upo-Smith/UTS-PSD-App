@@ -131,7 +131,7 @@ with tab2:
     st.write(data_sc)
 
 with tab3:
-    clf = pickle.load(open('clf.pkl', 'rb'))
+    clf = pickle.load(open('Sclf.pkl', 'rb'))
 
     st.write("Hasil prediksi dari audio di atas (Akurasi 81%, K = 9):")
 
