@@ -1,0 +1,6 @@
+streamlit
+numpy
+scipy
+pandas
+librosa
+scikit-learn==1.2.2
