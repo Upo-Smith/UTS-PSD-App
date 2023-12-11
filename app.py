@@ -122,7 +122,7 @@ with tab1:
     st.dataframe(root)
 
 with tab2:
-    method = st.radio('Normalisasi hasil ektraksi inputan menggunakan Z-Score',('Dengan PCA (20)', 'Tanpa PCA'))
+    method = st.write('Normalisasi hasil ektraksi inputan menggunakan Z-Score Tanpa PCA:')
 
     scaler = pickle.load(open('scaler.pkl', 'rb'))
     pca = pickle.load(open('pca.pkl', 'rb'))
@@ -130,10 +130,7 @@ with tab2:
     data_sc = scaler.transform(data)
     data_pca = pca.transform(data_sc)
 
-    if method == 'Tanpa PCA':
-        st.write(data_sc)
-    if method == 'Dengan PCA (20)':
-        st.write(data_pca)
+    st.write(data_sc)
 
 with tab3:
     Pclf = pickle.load(open('clf.pkl', 'rb'))
@@ -141,9 +138,5 @@ with tab3:
 
     st.write("Hasil prediksi dari audio di atas (Akurasi 81%, K = 9):")
 
-    if method == 'Tanpa PCA':
-        predict1 = Sclf.predict(data_sc)
-        st.write(predict1)
-    if method == 'Dengan PCA (20)':
-        predict2 = Pclf.predict(data_pca)
-        st.write(predict2)
+    predict1 = Sclf.predict(data_sc)
+    st.write(predict1)
